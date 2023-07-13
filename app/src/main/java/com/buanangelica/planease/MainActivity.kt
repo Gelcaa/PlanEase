@@ -1,6 +1,7 @@
 package com.buanangelica.planease
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun Login(){
+    val context = LocalContext.current
     var username by remember{ mutableStateOf(TextFieldValue(""))}
     var password by remember { mutableStateOf(TextFieldValue(""))}
     Column(
@@ -75,7 +78,16 @@ fun Login(){
 
         )
         Button(
-            onClick = {  },
+            onClick = {
+                      if (username.text == "Gelca" && password.text == "gelca"){
+                          Toast.makeText(context,"Welcome!", Toast.LENGTH_LONG)
+
+
+                      }else {
+                          Toast.makeText(context,"Incorrect Login information", Toast.LENGTH_LONG)
+                      }
+
+            },
             colors = ButtonDefaults.buttonColors(Color(0xFF353E4D)),
             modifier = Modifier
                 .fillMaxWidth(.72f)
